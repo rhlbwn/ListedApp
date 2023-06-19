@@ -65,7 +65,7 @@ class DashboardViewModel {
     }
     
     func getUserName() -> String {
-        return "Rahul"
+        return "Rahul Bawane"
     }
     
     func getChartsData() -> [String: Int]? {

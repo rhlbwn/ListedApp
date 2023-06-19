@@ -88,6 +88,7 @@
                 <outlet property="bgView" destination="zpL-fI-wk9" id="HG7-QJ-9RJ"/>
                 <outlet property="chartsView" destination="wZ5-jc-22F" id="bWd-eO-7ko"/>
                 <outlet property="rangeBgView" destination="XKV-A8-JZO" id="dh5-4F-nc0"/>
+                <outlet property="rangeLabel" destination="wJC-qB-V7L" id="lOX-7E-SSN"/>
             </connections>
             <point key="canvasLocation" x="134.78260869565219" y="87.053571428571431"/>
         </tableViewCell>

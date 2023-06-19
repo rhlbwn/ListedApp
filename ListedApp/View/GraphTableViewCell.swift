@@ -13,6 +13,7 @@ class GraphTableViewCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var chartsView: LineChartView!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var rangeBgView: UIView!
+    @IBOutlet weak var rangeLabel: UILabel!
 
     var chartsValue: [ChartDataEntry] = [ChartDataEntry]()
     
@@ -40,18 +41,18 @@ class GraphTableViewCell: UITableViewCell, ChartViewDelegate {
         
         let xAxis = chartsView.xAxis
         xAxis.labelPosition = .bottom
-        xAxis.granularity = 1
         xAxis.labelTextColor = .gray
         xAxis.axisLineColor = .gray
+        xAxis.labelRotationAngle = -90
     }
     
     func setChartsData() {
         let set = LineChartDataSet(entries: chartsValue)
         set.drawCirclesEnabled = false
         set.lineWidth = 2
-        set.setColor(.blue)
+        set.setColor(.systemBlue)
         let gradientColors = [UIColor.white.cgColor,
-                              UIColor.blue.cgColor]
+                              UIColor.systemBlue.cgColor]
         let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
 
         set.fillAlpha = 0.6
@@ -64,7 +65,7 @@ class GraphTableViewCell: UITableViewCell, ChartViewDelegate {
     }
     
     func setChartsValue(values: [String: Int]?) {
-        guard let values = values else {return}
+        guard let values = values?.sorted(by: {$0.0 < $1.0}) else {return}
         var count: Double = 0
         var datesArray = [String]()
 
@@ -75,6 +76,11 @@ class GraphTableViewCell: UITableViewCell, ChartViewDelegate {
         }
         chartsView.xAxis.valueFormatter = IndexAxisValueFormatter(values:datesArray)
         chartsView.xAxis.granularity = 1
+        if datesArray.count > 1 {
+            rangeLabel.text = (datesArray.first ?? "") + " - " + (datesArray.last ?? "")
+        } else {
+            rangeLabel.text = "Insufficient data"
+        }
         self.setChartsData()
     }
 }

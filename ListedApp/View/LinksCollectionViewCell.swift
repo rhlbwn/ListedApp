@@ -21,7 +21,7 @@ class LinksCollectionViewCell: UICollectionViewCell {
     func setCellData(title: String, selected: Bool) {
         self.titleLabel.text = title
         if selected {
-            bgView.backgroundColor = .blue
+            bgView.backgroundColor = .systemBlue
             titleLabel.textColor = .white
         } else {
             bgView.backgroundColor = .clear
